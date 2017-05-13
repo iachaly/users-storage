@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
+ * Хранилище для хранения пользователей в каталоге OpenLDAP
  * Информация по LDAP:
  * @see http://www.thegeekstuff.com/2015/02/openldap-add-users-groups
- *
  * @see http://www.zytrax.com/books/ldap/ape/
- * */
+ */
 
 class LDAPStorage extends AbstractStorage
 {
@@ -36,6 +36,11 @@ class LDAPStorage extends AbstractStorage
         ldap_close($this->connection);
     }
 
+    /**
+     * Использовалось для получения ошибок
+     * @deprecated
+     * @return string
+     */
     public function lastError()
     {
         return ldap_error($this->connection);
@@ -70,6 +75,11 @@ class LDAPStorage extends AbstractStorage
         return $result;
     }
 
+    /**
+     * Вывод данных из LDAP каталога
+     * Использовалось при отладке
+     * @deprecated
+     */
     public function dump()
     {
         $result = ldap_search($this->connection, $this->baseDn, '(objectClass=*)');

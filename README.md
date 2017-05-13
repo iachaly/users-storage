@@ -50,6 +50,18 @@
 ```
 /classes/MySQLStorage
 ```
+Структура таблицы пользователей:
+```
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+```
 
 ### Менеджер хранилищ
 Для удобной работы с хранилищами создан класс `Manager`,

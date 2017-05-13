@@ -1,8 +1,18 @@
 <?php
 
+/**
+ * Class Manager
+ * Набор методов для удобной работы с хранилищами
+ */
 class Manager
 {
 
+    /**
+     * Метод для миграции пользователей из одного хранилища в другое
+     * @param AbstractStorage $from
+     * @param AbstractStorage $to
+     * @return array
+     */
     public static function migrate(AbstractStorage $from, AbstractStorage $to)
     {
         $log = [];

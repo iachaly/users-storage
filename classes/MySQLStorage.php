@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class MySQLStorage
+ * Хранилище для хранения пользователей в бд MySQL
+ */
 class MySQLStorage extends AbstractStorage
 {
 

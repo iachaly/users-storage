@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de54d9c5-3577-4c9a-a569-072672c1cfa9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/AbstractStorage.php" afterPath="$PROJECT_DIR$/classes/AbstractStorage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/LDAPStorage.php" afterPath="$PROJECT_DIR$/classes/LDAPStorage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Manager.php" afterPath="$PROJECT_DIR$/classes/Manager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/MySQLStorage.php" afterPath="$PROJECT_DIR$/classes/MySQLStorage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +25,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="23" selection-end-column="37" />
+            <state relative-caret-position="481">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -32,43 +36,11 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="362">
-                <caret line="75" column="26" lean-forward="true" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+              <first_editor relative-caret-position="310">
+                <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="32" />
                 <folding />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractStorage.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/AbstractStorage.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="101" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LDAPStorage.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/LDAPStorage.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-              <folding>
-                <element signature="e#7#157#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/Manager.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -90,8 +62,8 @@
         <option value="$PROJECT_DIR$/classes/AbstractStorage.php" />
         <option value="$PROJECT_DIR$/classes/LDAPStorage.php" />
         <option value="$PROJECT_DIR$/classes/MySQLStorage.php" />
-        <option value="$PROJECT_DIR$/classes/Manager.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/classes/Manager.php" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -232,12 +204,12 @@
       <option name="presentableId" value="Default" />
       <updated>1494605776081</updated>
       <workItem from="1494605891393" duration="14557000" />
-      <workItem from="1494672324144" duration="11380000" />
+      <workItem from="1494672324144" duration="11971000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25937000" />
+    <option name="totallyTimeSpent" value="26528000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1616" height="876" extended-state="6" />
@@ -289,7 +261,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#7#157#0#PHP" expanded="true" />
+            <element signature="e#7#213#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -391,47 +363,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/classes/LDAPStorage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="20" column="71" lean-forward="true" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+          <folding>
+            <element signature="e#7#213#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/classes/MySQLStorage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
-          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <marker date="1494690483325" expanded="true" signature="424:498" ph="INSERT INTO `users`... " />
-            <marker date="1494690483325" expanded="true" signature="767:812" ph="SELECT * FRO... users" />
+            <marker date="1494692890389" expanded="true" signature="505:579" ph="INSERT INTO `users`... " />
+            <marker date="1494692890389" expanded="true" signature="848:893" ph="SELECT * FRO... users" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/AbstractStorage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="101" />
+        <state relative-caret-position="39">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/LDAPStorage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="e#7#157#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/Manager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="572">
+          <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="23" selection-end-column="37" />
+        <state relative-caret-position="481">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -439,8 +411,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="362">
-            <caret line="75" column="26" lean-forward="true" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+          <first_editor relative-caret-position="310">
+            <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="32" />
             <folding />
           </first_editor>
           <second_editor />
