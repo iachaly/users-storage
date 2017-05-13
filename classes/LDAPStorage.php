@@ -1,27 +1,28 @@
 <?php
 
 /*
+ * Информация по LDAP:
  * @see http://www.thegeekstuff.com/2015/02/openldap-add-users-groups
- * @see http://blog.michael.kuron-germany.de/2012/07/hashing-and-verifying-ldap-passwords-in-php/
+ *
  * @see http://www.zytrax.com/books/ldap/ape/
  * */
 
-class LDAPStorage
+class LDAPStorage extends AbstractStorage
 {
 
     private $connection;
-    private $baseDn = 'dc=example,dc=org';
+    private $baseDn;
 
-    public function __construct(LdapConnectionData $data)
+    public function __construct($data)
     {
-        $connection = ldap_connect($data->host, $data->port);
+        $connection = ldap_connect($data['host'], $data['port']);
         if ($connection) {
             // используем LDAPv3
             ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION, 3);
-            $binding = ldap_bind($connection, $data->bindDn, $data->bindPassword);
+            $binding = ldap_bind($connection, $data['bindDn'], $data['bindPassword']);
             if ($binding) {
                 $this->connection = $connection;
-                $this->baseDn = $data->baseDn;
+                $this->baseDn = $data['baseDn'];
             } else {
                 throw new Exception('Не удалось аутентифицироваться на LDAP сервере.');
             }
@@ -40,61 +41,39 @@ class LDAPStorage
         return ldap_error($this->connection);
     }
 
-    public function addGroup($groupName)
-    {
-        $data = [];
-        $data['objectclass'] = 'organizationalRole';
-        $dn = "cn=$groupName,{$this->baseDn}";
-        return @ ldap_add($this->connection, $dn, $data);
-    }
-
-    public function addUser($username, $password = '', $groupName = '')
+    public function addUser($username, $password = '')
     {
         $data = [];
         $data['sn'] = $username;
         $data['objectclass'] = ['person', 'organizationalPerson'];
         if ($password) {
-            $data['userpassword'] = '{MD5}' . base64_encode(md5($password, true));
+            $data['userpassword'] = $this->passwordHash($password);
         }
-        if ($groupName) {
-            $dn = "cn=$username,cn=$groupName,{$this->baseDn}";
-        } else {
-            $dn = "cn=$username,{$this->baseDn}";
-        }
-        return @ ldap_add($this->connection, $dn, $data);
-    }
-
-    public function getGroups()
-    {
-        $searchResults = ldap_search($this->connection, $this->baseDn, '(objectclass=organizationalRole)');
-        $data = ldap_get_entries($this->connection, $searchResults);
-        $groups = [];
-        foreach ($data as $dataItem) {
-            $groupName = $dataItem['cn'][0];
-            if ($groupName) {
-                $groups[] = $groupName;
-            }
-        }
-        return $groups;
+        return @ ldap_add($this->connection, "cn=$username,{$this->baseDn}", $data);
     }
 
     public function getUsers()
     {
         $searchResults = ldap_search($this->connection, $this->baseDn, '(objectclass=organizationalPerson)');
-        $data = ldap_get_entries($this->connection, $searchResults);
-        $users = [];
-        foreach ($data as $dataItem) {
-            $username = $dataItem['cn'][0];
+        $users = ldap_get_entries($this->connection, $searchResults);
+        $result = [];
+        foreach ($users as $user) {
+            $username = $user['cn'][0];
+            $password = isset($user['userpassword']) ? $user['userpassword'][0] : '';
+            if ($username) {
+                $result[] = [
+                    'username' => $username,
+                    'password' => $password
+                ];
+            }
         }
-        print_r($data);
+        return $result;
     }
 
     public function dump()
     {
-
         $result = ldap_search($this->connection, $this->baseDn, '(objectClass=*)');
         $data = ldap_get_entries($this->connection, $result);
-
         for ($i = 0; $i < $data['count']; ++$i) {
             $node = $data[$i];
             echo "dn: {$node['dn']}" . PHP_EOL;
@@ -112,7 +91,6 @@ class LDAPStorage
             echo PHP_EOL;
             echo PHP_EOL;
         }
-
     }
 
 }

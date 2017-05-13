@@ -1,33 +1,24 @@
 <?php
 
-require 'classes/LDAPConnectionData.php';
-require 'classes/LDAPStorage.php';
+spl_autoload_register(function ($className) {
+    require "classes/$className.php";
+});
 
-echo PHP_EOL;
-echo PHP_EOL;
+$LDAPStorage = new LDAPStorage([
+    'host' => '192.168.99.100',
+    'port' => 32777,
+    'baseDn' => 'dc=example,dc=org',
+    'bindDn' => 'cn=admin,dc=example,dc=org',
+    'bindPassword' => 'admin'
+]);
 
-$ldapConnectionData = new LDAPConnectionData();
-$ldapConnectionData->host = '192.168.99.100';
-$ldapConnectionData->port = 32775;
-$ldapConnectionData->baseDn = 'dc=example,dc=org';
-// username
-$ldapConnectionData->bindDn = 'cn=admin,dc=example,dc=org';
-// password
-$ldapConnectionData->bindPassword = 'admin';
+$MySQLStorage = new MySQLStorage([
+    'host' => '127.0.0.1',
+    'dbname' => 'users_test',
+    'user' => 'root',
+    'password' => ''
+]);
 
-$connection = new LDAPStorage($ldapConnectionData);
-
-
-for($i = 0; $i < 10; ++$i) {
-    $groupName = 'Group' . $i;
-    $connection->addGroup($groupName);
-    for ($j = 0; $j < 10; ++$j) {
-        $connection->addUser("User{$i}_{$j}", 'password', $groupName);
-    }
-}
-
-
-//$connection->addUser('snewer5', 'rd4bj78x', 'Managers');
-
-$groups = $connection->getGroups();
-$users = $connection->getUsers();
+//$log = Manager::migrate($LDAPStorage, $MySQLStorage);
+$log = Manager::migrate($MySQLStorage, $LDAPStorage);
+echo implode('<br>' . PHP_EOL, $log);
