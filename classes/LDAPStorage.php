@@ -35,40 +35,66 @@ class LDAPStorage
         ldap_close($this->connection);
     }
 
+    public function lastError()
+    {
+        return ldap_error($this->connection);
+    }
+
     public function addGroup($groupName)
     {
-        return ldap_add($this->connection, "cn=$groupName,{$this->baseDn}", [
-            'objectclass' => ['organizationalRole']
-        ]);
+        $data = [];
+        $data['objectclass'] = 'organizationalRole';
+        $dn = "cn=$groupName,{$this->baseDn}";
+        return @ ldap_add($this->connection, $dn, $data);
     }
 
     public function addUser($username, $password = '', $groupName = '')
     {
         $data = [];
-        $data['cn'] = $username;
         $data['sn'] = $username;
-        $data['objectClass'] = ['person', 'organizationalPerson'];
+        $data['objectclass'] = ['person', 'organizationalPerson'];
         if ($password) {
-            $data['userPassword'] = '{MD5}' . base64_encode(md5($password, true));
+            $data['userpassword'] = '{MD5}' . base64_encode(md5($password, true));
         }
         if ($groupName) {
             $dn = "cn=$username,cn=$groupName,{$this->baseDn}";
         } else {
             $dn = "cn=$username,{$this->baseDn}";
         }
-        return ldap_add($this->connection, $dn, $data);
+        return @ ldap_add($this->connection, $dn, $data);
     }
 
-    public function lastError()
+    public function getGroups()
     {
-        return ldap_error($this->connection);
+        $searchResults = ldap_search($this->connection, $this->baseDn, '(objectclass=organizationalRole)');
+        $data = ldap_get_entries($this->connection, $searchResults);
+        $groups = [];
+        foreach ($data as $dataItem) {
+            $groupName = $dataItem['cn'][0];
+            if ($groupName) {
+                $groups[] = $groupName;
+            }
+        }
+        return $groups;
     }
 
-    public function export()
+    public function getUsers()
     {
-        $baseDn = 'dc=example,dc=org';
-        $result = ldap_search($this->connection, $baseDn, '(objectClass=*)');
+        $searchResults = ldap_search($this->connection, $this->baseDn, '(objectclass=organizationalPerson)');
+        $data = ldap_get_entries($this->connection, $searchResults);
+        $users = [];
+        foreach ($data as $dataItem) {
+            $username = $dataItem['cn'][0];
+        }
+        print_r($data);
+    }
+
+    public function dump()
+    {
+
+        $result = ldap_search($this->connection, $this->baseDn, '(objectClass=*)');
         $data = ldap_get_entries($this->connection, $result);
+
         for ($i = 0; $i < $data['count']; ++$i) {
             $node = $data[$i];
             echo "dn: {$node['dn']}" . PHP_EOL;
@@ -86,7 +112,7 @@ class LDAPStorage
             echo PHP_EOL;
             echo PHP_EOL;
         }
-        //print_r($data);
+
     }
 
 }
